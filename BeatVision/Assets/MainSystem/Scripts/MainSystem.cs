@@ -156,6 +156,7 @@ public class MainSystem : MonoBehaviour
                         Movement(false);
                         if (startsGlaringPart)
                         {
+                            startsMovementPart = false;
                             part = Part.GLARING;
                             turn = Turn.DEFENSE;
                         }

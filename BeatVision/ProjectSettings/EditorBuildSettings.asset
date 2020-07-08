@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 3e049eceb6e1fb4419e2c099f87573d9
+  - enabled: 1
+    path: Assets/Scenes/Taketake.unity
+    guid: d407e3e043b44bd4a86554b1d7751822
+  - enabled: 1
+    path: Assets/Scenes/Kosei.unity
+    guid: d2f10190bdb49c143a726eb441f96314
   m_configObjects: {}
