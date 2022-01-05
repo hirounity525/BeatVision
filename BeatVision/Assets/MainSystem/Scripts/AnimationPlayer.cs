@@ -11,7 +11,8 @@ public class AnimationPlayer : MonoBehaviour
         {Action.STRIKE,"PreStrike" },
         {Action.MIDDLE,"PreMiddle" },
         {Action.LOWER,"PreLower" },
-        {Action.WAIT,"Default" }
+        {Action.WAIT,"Default" },
+        {Action.MOVE,"Move" }
     };
 
     private Dictionary<Action, string> playActionAnimName = new Dictionary<Action, string>() {
@@ -19,13 +20,15 @@ public class AnimationPlayer : MonoBehaviour
         {Action.STRIKE,"Strike" },
         {Action.MIDDLE,"Middle" },
         {Action.LOWER,"Lower" },
-        {Action.WAIT,"Default" }
+        {Action.WAIT,"Default" },
+        {Action.MOVE,"Move" }
     };
 
     [SerializeField] private float actionTime;
     private float actionTimer;
     private bool playsAction;
     private Action playingAction = Action.WAIT;
+    public bool isError;
 
     private void Awake()
     {
@@ -37,71 +40,34 @@ public class AnimationPlayer : MonoBehaviour
         simpleAnimation.Play("Start");
     }
 
+    public void PlayDamageAnim()
+    {
+        simpleAnimation.Play("Damage");
+    }
+
+    public void PlayBackAnim()
+    {
+        simpleAnimation.Play("Back");
+    }
+
+    public void Pause()
+    {
+        simpleAnimation.Stop();
+    }
+
+    public void PlayErrorAnim()
+    {
+        simpleAnimation.Play("Error");
+        isError = true;
+    }
+
     public void PlayPreAnim(Action action)
     {
-        if(action == Action.WAIT)
-        {
-            if (!playsAction)
-            {
-                simpleAnimation.Play(playPreAnimName[action]);
-            }
-        }
-        else
-        {
-            if(playingAction != action)
-            {
-                playsAction = true;
-                actionTimer = 0;
-                playingAction = action;
-                simpleAnimation.Play(playPreAnimName[action]);
-            }
-        }
-
-        if (playsAction)
-        {
-            if (actionTimer >= actionTime)
-            {
-                playingAction = Action.WAIT;
-                playsAction = false;
-            }
-            else
-            {
-                actionTimer += Time.deltaTime;
-            }
-        }
+        simpleAnimation.Play(playPreAnimName[action]);
     }
 
     public void PlayActionAnim(Action action)
     {
-        if (action == Action.WAIT)
-        {
-            if (!playsAction)
-            {
-                simpleAnimation.Play(playPreAnimName[action]);
-            }
-        }
-        else
-        {
-            if (playingAction != action)
-            {
-                playsAction = true;
-                actionTimer = 0;
-                playingAction = action;
-                simpleAnimation.Play(playActionAnimName[action]);
-            }
-        }
-
-        if (playsAction)
-        {
-            if (actionTimer >= actionTime)
-            {
-                playingAction = Action.WAIT;
-                playsAction = false;
-            }
-            else
-            {
-                actionTimer += Time.deltaTime;
-            }
-        }
+        simpleAnimation.Play(playActionAnimName[action]);
     }
 }

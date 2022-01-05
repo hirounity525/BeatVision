@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class HPDamager : MonoBehaviour
 {
+    [SerializeField] PlayerHPController playerHP;
+
     [SerializeField] Image HPberG;
     [SerializeField] Image HPberR;
 
@@ -12,15 +14,24 @@ public class HPDamager : MonoBehaviour
 
     private bool startsDamage;
 
+    private float nowHP;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        nowHP = playerHP.hitPoints;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(playerHP.hitPoints < nowHP)
+        {
+            nowHP = playerHP.hitPoints;
+            HPberG.fillAmount = (float)playerHP.hitPoints / playerHP.maxHP;
+            startsDamage = true;
+        }
+
         if (startsDamage)
         {
             HPberR.fillAmount -= damageRate * Time.deltaTime;

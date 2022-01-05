@@ -9,7 +9,8 @@ public enum Action
     MIDDLE,
     LOWER,
     WAIT,
-    START
+    START,
+    MOVE
 }
 
 [System.Serializable]

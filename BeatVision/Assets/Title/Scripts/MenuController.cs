@@ -9,6 +9,7 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] private TitleInputProvider titleInput;
     [SerializeField] private SEPlayer sEPlayer;
+    [SerializeField] private AudioSource BGM;
 
     [Header("メニューセレクト")]
     [SerializeField] List<RectTransform> menuRectTransforms;
@@ -16,11 +17,19 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject nowSelectMenu;
 
     [Header("NewGame")]
-    [SerializeField] private GameObject newGameWindow;
+    [SerializeField] private string startSceneName;
     [Header("Option")]
     [SerializeField] private GameObject optionWindow;
     [Header("Exit")]
     [SerializeField] private GameObject exitWindow;
+
+    [SerializeField] private Image fadeImage;
+    [SerializeField] private GameObject protoWindow;
+
+    [SerializeField] private string musicGarallyName;
+
+    SceneLoader sceneLoader;
+    string sceneName;
 
     int menuCount;
     int nowSelectMenuNum;
@@ -33,11 +42,21 @@ public class MenuController : MonoBehaviour
     bool isOpenWindow;
     GameObject openWindowObj;
 
+    bool isStart;
+
+    private void Awake()
+    {
+        sceneLoader = GetComponent<SceneLoader>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         menuCount = menuRectTransforms.Count;
         nowSelectMenu = menuRectTransforms[0].gameObject;
+
+        fadeImage.color = new Color(0, 0, 0, 1);
+        fadeImage.DOFade(0f, selectDuration).SetEase(Ease.InCubic);
     }
 
     // Update is called once per frame
@@ -47,6 +66,12 @@ public class MenuController : MonoBehaviour
         {
             if(openWindowObj != null)
             {
+                if (titleInput.backButtonDown)
+                {
+                    sEPlayer.SEPlay("Select");
+                    openWindowObj.GetComponent<SimpleAnimation>().Play("Close");
+                }
+
                 if (openWindowObj.activeSelf)
                 {
                     return;
@@ -59,16 +84,28 @@ public class MenuController : MonoBehaviour
             }
         }
 
+        if (isStart)
+        {
+            if(fadeImage.color.a >= 1)
+            {
+                sceneLoader.Load(sceneName);
+            }
+
+            return;
+        }
+
         if (!isAction)
         {
             if (titleInput.upButtonDown)
             {
                 MoveUpMenu();
+                sEPlayer.SEPlay("Move");
                 StartCoroutine(StartAction());
             }
             else if (titleInput.downButtonDown)
             {
                 MoveDownMenu();
+                sEPlayer.SEPlay("Move");
                 StartCoroutine(StartAction());
             }
             else if (titleInput.selectButtonDown)
@@ -224,33 +261,43 @@ public class MenuController : MonoBehaviour
 
         if (canSelect)
         {
+            sEPlayer.SEPlay("Select");
             switch (menu)
             {
                 case Menu.NEWGAME:
+                    fadeImage.DOFade(1.0f, selectDuration).SetEase(Ease.OutCubic);
+                    BGM.DOFade(0, selectDuration);
+                    sceneName = startSceneName;
+                    isStart = true;
                     break;
                 case Menu.CONTINUE:
                     break;
                 case Menu.STAGESELECT:
                     break;
                 case Menu.SCORE:
+                    fadeImage.DOFade(1.0f, selectDuration).SetEase(Ease.OutCubic);
+                    BGM.DOFade(0, selectDuration);
+                    sceneName = musicGarallyName;
+                    isStart = true;
                     break;
                 case Menu.OPTION:
-                    optionWindow.SetActive(true);
-                    openWindowObj = optionWindow;
+                    protoWindow.SetActive(true);
+                    openWindowObj = protoWindow;
                     isOpenWindow = true;
                     break;
                 case Menu.EXIT:
-                    exitWindow.SetActive(true);
-                    openWindowObj = exitWindow;
-                    isOpenWindow = true;
+                    Application.Quit();
                     break;
                 case Menu.MANUAL:
+                    protoWindow.SetActive(true);
+                    openWindowObj = protoWindow;
+                    isOpenWindow = true;
                     break;
             }
         }
         else
         {
-            sEPlayer.SEPlay("Error");
+            //sEPlayer.SEPlay("Error");
         }
     }
 

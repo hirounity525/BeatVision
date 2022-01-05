@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Title.unity
-    guid: 3e049eceb6e1fb4419e2c099f87573d9
+    path: Assets/Scenes/Proto/ProtoTitle.unity
+    guid: ba5b9455b60f4c94f9c4e349ab92d8e4
   - enabled: 1
-    path: Assets/Scenes/Taketake.unity
-    guid: d407e3e043b44bd4a86554b1d7751822
+    path: Assets/Scenes/Proto/MusicGarally.unity
+    guid: c0e1afc93f91dc1409837db6007d0340
   - enabled: 1
-    path: Assets/Scenes/Kosei.unity
-    guid: d2f10190bdb49c143a726eb441f96314
+    path: Assets/Scenes/Stage1.unity
+    guid: 101a39b05f9066641898ac92b97cbf66
   m_configObjects: {}

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   beatDatas:
-  - {fileID: 11400000, guid: 85c2c5fd92d635841baa8e3f9f288a32, type: 2}
-  - {fileID: 11400000, guid: 8f7a9736c36473a4cb9f05270a4b7a25, type: 2}
+  - {fileID: 11400000, guid: dc77880914fddac469e41d835cce6b7e, type: 2}
+  - {fileID: 11400000, guid: 86cebef6dd584e94aa58f4a23ae07699, type: 2}
+  - {fileID: 11400000, guid: 02b034289b483b5469306471c8d51429, type: 2}

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2037,6 +2037,7 @@ MonoBehaviour:
   rightButtonDown: 0
   leftButtonDown: 0
   selectButtonDown: 0
+  backButtonDown: 0
 --- !u!1 &572293273
 GameObject:
   m_ObjectHideFlags: 0
@@ -5085,6 +5086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleInput: {fileID: 554519968}
+  sEPlayer: {fileID: 0}
+  BGM: {fileID: 0}
   menuRectTransforms:
   - {fileID: 163725150}
   - {fileID: 1642177744}
@@ -5094,10 +5097,11 @@ MonoBehaviour:
   - {fileID: 900843735}
   selectDuration: 0.5
   nowSelectMenu: {fileID: 0}
-  sePlayer: {fileID: 419717782}
-  newGameWindow: {fileID: 1515242153}
+  startSceneName: 
   optionWindow: {fileID: 433004813}
   exitWindow: {fileID: 1120770915}
+  fadeImage: {fileID: 0}
+  protoWindow: {fileID: 0}
 --- !u!1 &1564878593
 GameObject:
   m_ObjectHideFlags: 0
@@ -5524,7 +5528,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 4.3009996
   m_canvasRenderer: {fileID: 1655695689}
   m_TextComponent: {fileID: 1030696045}
   m_materialReferenceIndex: 1
@@ -5633,7 +5637,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 4.3009996
   m_canvasRenderer: {fileID: 1720766496}
   m_TextComponent: {fileID: 1642177745}
   m_materialReferenceIndex: 1

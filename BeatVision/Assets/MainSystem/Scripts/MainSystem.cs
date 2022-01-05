@@ -2,27 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Turn
-{
-    ATTACK,
-    DEFENSE
-}
-
-public enum Part
-{
-    GLARING,
-    PRE,
-    MOVEMENT
-}
-
-[System.Serializable]
-public struct ActionTiming
-{
-    public Action action;
-    public float timing;
-    public bool isCheck;
-}
-
 public class MainSystem : MonoBehaviour
 {
     public Turn turn;

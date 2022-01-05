@@ -14,6 +14,7 @@ public class TitleInputProvider : MonoBehaviour
     public bool rightButtonDown;
     public bool leftButtonDown;
     public bool selectButtonDown;
+    public bool backButtonDown;
 
     private void Awake()
     {
@@ -28,5 +29,6 @@ public class TitleInputProvider : MonoBehaviour
         rightButtonDown = player.GetButtonDown("Right");
         leftButtonDown = player.GetButtonDown("Left");
         selectButtonDown = player.GetButtonDown("Select");
+        backButtonDown = player.GetButtonDown("Back");
     }
 }
